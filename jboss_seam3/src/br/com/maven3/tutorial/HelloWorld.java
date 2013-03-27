@@ -1,6 +1,7 @@
 package br.com.maven3.tutorial;
 
 import java.io.Serializable;
+import java.text.MessageFormat;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
@@ -11,6 +12,8 @@ import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+
+import br.com.maven3.tutorial.bundle.MessageResource;
 
 @Named
 @SessionScoped
@@ -96,5 +99,9 @@ public class HelloWorld implements Serializable
    public void setPainel(String painel) {
 	this.painel = painel;
    }
-   
+   public String getMessage() {		
+		String key = "someMessage";
+		String msg = new MessageResource().getValue(key);
+		return MessageFormat.format(msg, "SomeValue");				
+	}
 }

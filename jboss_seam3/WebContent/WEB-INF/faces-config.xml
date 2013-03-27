@@ -16,4 +16,15 @@
 			<to-view-id>cadastroPessoa.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<application>
+		<locale-config>
+			<default-locale>pt_BR</default-locale>
+			<supported-locale>pt_BR</supported-locale>
+		</locale-config>
+		<resource-bundle>
+			<base-name>MessageResource</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+	</application>
 </faces-config>
