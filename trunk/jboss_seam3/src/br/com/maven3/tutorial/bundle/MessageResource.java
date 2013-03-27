@@ -1,12 +1,17 @@
 package br.com.maven3.tutorial.bundle;
 
+import java.io.Serializable;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import javax.faces.context.FacesContext;
 
-public class MessageResource {
+public class MessageResource implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ResourceBundle bundle;
 
 	public ResourceBundle getBundle() {

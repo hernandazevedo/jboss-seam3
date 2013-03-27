@@ -5,6 +5,7 @@ import java.text.MessageFormat;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
@@ -34,6 +35,9 @@ public class HelloWorld implements Serializable
    
     private String painel;
    
+    
+    @Inject
+    private MessageResource messageResource;    
    
     public HelloWorld() {}
    
@@ -101,7 +105,7 @@ public class HelloWorld implements Serializable
    }
    public String getMessage() {		
 		String key = "someMessage";
-		String msg = new MessageResource().getValue(key);
+		String msg = messageResource.getValue(key);
 		return MessageFormat.format(msg, "SomeValue");				
 	}
 }
