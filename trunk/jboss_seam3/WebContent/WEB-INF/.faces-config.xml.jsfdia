@@ -7,6 +7,11 @@
    <PROCESS-ITEM-OUTPUT ID="sucesso::cadastroPessoa.xhtml" NAME="output"
     PATH="cadastroPessoa.xhtml" TARGET="rules:cadastroPessoa.xhtml"
     TITLE="sucesso" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="index:#{cadastroPessoaModel.index}:cadastroPessoa.xhtml"
+    NAME="output1" PATH="cadastroPessoa.xhtml"
+    TARGET="rules:cadastroPessoa.xhtml"
+    TITLE="#{cadastroPessoaModel.index}:index" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
 </PROCESS>
