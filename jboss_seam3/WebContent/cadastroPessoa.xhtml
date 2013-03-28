@@ -10,17 +10,26 @@
       <p>Ai vai o cadastro</p>
 	
       <h:form id="bv">
-       
-         <h2>Cadastro de pessoas</h2>
+        
+        Dinamica:
          
+         <p:selectOneMenu value="#{cadastroPessoaHandler.pessoaComboSelected}" effect="fade">  
+            <f:selectItem itemLabel="Selecione" itemValue="-1" />  
+            <f:selectItems value="#{cadastroPessoaHandler.pessoasCombo}" var="_pessoa" itemLabel="#{_pessoa.nome}" itemValue="#{_pessoa.id}" />  
+        </p:selectOneMenu>
+           
+         <h2>Cadastro de pessoas</h2>
+         <p:commandButton id="infoButton" value="Info" actionListener="#{cadastroPessoaHandler.addInfo}" immediate="true">
+         	<f:param />
+         </p:commandButton> 
          <table>
             <tr>
                <th style="text-align: right;">
                   <h:outputLabel for="nome" value="Nome:"/>
                </th>
                <td>
-                  <h:inputText id="nome" value="#{cadastroPessoaHandler.nome}"/>
-                  <h:message for="nome" errorClass="invalid"/>
+                  <h:inputText id="nome" value="#{cadastroPessoaHandler.nome}"  />
+                  <h:message for="nome" errorClass="invalid"/>  
                </td>
             </tr>
             <tr>
@@ -28,40 +37,41 @@
                   <h:outputLabel for="idade" value="Idade:"/>
                </th>
                <td>
-                  <h:inputText id="idade" value="#{cadastroPessoaHandler.idade}"/>
-                  <h:message for="idade" errorClass="invalid"/>
+                  <h:inputText id="idade" value="#{cadastroPessoaHandler.idade}"  />
+                  <h:message for="idade" errorClass="invalid"  />
                </td>
             </tr>
          </table>
          <p>
-            <p:commandButton id="cadastrarPessoa" update="tabelaPessoas" action="#{cadastroPessoaHandler.cadastrarPessoa}" value="Cadastrar">
+            <p:commandButton id="cadastrarPessoa" ajax="false"  action="#{cadastroPessoaHandler.cadastrarPessoa}" value="Cadastrar" />
             	
-            </p:commandButton>
+            
             
   
             <h:outputText value=" Ok!" rendered="#{facesContext.postback and empty facesContext.messageList}" style="color: green;"/>
          </p>
          <h2>Cadastrados</h2>
          
-      <h:dataTable id="tabelaPessoas"  var="_pessoa" value="#{cadastroPessoaHandler.pessoas}">
-	     <h:column>
+      <p:dataTable id="tabelaPessoas" selectionMode="multiple" rowKey="#{_pessoa.id}" selection="#{cadastroPessoaHandler.selection}" paginatorPosition="bottom"  paginator="true" rows="5" var="_pessoa" value="#{cadastroPessoaHandler.pessoas}">
+         <p:column>
             <f:facet name="header">Id</f:facet>
             #{_pessoa.id}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">Nome</f:facet>
             #{_pessoa.nome}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">Idade</f:facet>
             #{_pessoa.idade}
-         </h:column>
-         <h:column>
+         </p:column>
+         <p:column>
             <f:facet name="header">Ações</f:facet>
             	<h:commandButton id="removerPessoa" value="Remover" action="#{cadastroPessoaHandler.removerPessoa(_pessoa.id)}" >            		
             	</h:commandButton>            	
-         </h:column>               
-      </h:dataTable>
+         </p:column>               
+      </p:dataTable>
+      <p:commandButton id="removerSelecionados" update="tabelaPessoas" action="#{cadastroPessoaHandler.removerSelecionados}" value="Remover selecionados" />
             	
       </h:form>
    			      

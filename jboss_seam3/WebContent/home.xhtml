@@ -48,20 +48,12 @@
          </table>
          <p>
             <h:commandButton id="check" action="#{helloWorld.check}" value="Check values"/>
-            <rich:accordion switchType="ajax" immediate="true" activeItem="#{helloWorld.painel}">
-      			<rich:accordionItem name="Painel 1" value="OK" >
-      				<h:outputText value="uhhh" />
-      			</rich:accordionItem>
-      			
-      			<rich:accordionItem name="Painel 2" value="OK 2">
-      				<h:outputText value="uhhh 2" />
-      			</rich:accordionItem>
-      			</rich:accordion>
+            
             <h:outputText value=" All clear!" rendered="#{facesContext.postback and empty facesContext.messageList}" style="color: green;"/>
          </p>
       </h:form>
       
-		<rich:panel id="progressPanel"> Terminou</rich:panel>
+		
       <h2>Widgets</h2>
       <h:dataTable var="_widget" value="#{widgets}">
          <h:column>
@@ -85,7 +77,7 @@
       <h2>Carros</h2>
       
       
-		      <rich:dataTable var="_carro" value="#{carros}" >
+		      <h:dataTable var="_carro" value="#{carros}" >
 		         <h:column>
 		            <f:facet name="header">Id</f:facet>
 		            #{_carro.id}
@@ -94,7 +86,7 @@
 		            <f:facet name="header">Nome</f:facet>
 		            #{_carro.nome}
 		         </h:column>
-		      </rich:dataTable>
+		      </h:dataTable>
 	      
    </ui:define>
 </ui:composition>

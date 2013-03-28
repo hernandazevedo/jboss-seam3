@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import br.com.maven3.tutorial.jsf.converters.IConvertable;
+
 @Entity
-public class Pessoa implements Serializable{
+public class Pessoa implements Serializable,IConvertable{
 	
 	
 	
@@ -43,6 +45,11 @@ public class Pessoa implements Serializable{
 	}
 	public void setIdade(Integer idade) {
 		this.idade = idade;
+	}
+	@Override
+	public String getEntityId() {
+		
+		return String.valueOf(id);
 	}
 	
 	
