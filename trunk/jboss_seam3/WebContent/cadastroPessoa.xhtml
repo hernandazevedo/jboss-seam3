@@ -3,8 +3,7 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:f="http://java.sun.com/jsf/core"
    xmlns:h="http://java.sun.com/jsf/html"
-   xmlns:a4j="http://richfaces.org/a4j"
-   xmlns:rich="http://richfaces.org/rich"
+   xmlns:p="http://primefaces.org/ui"
    template="/WEB-INF/templates/default.xhtml">
    <ui:define name="content">
       <h1>Cadastro!</h1>
@@ -20,7 +19,7 @@
                   <h:outputLabel for="nome" value="Nome:"/>
                </th>
                <td>
-                  <h:inputText id="nome" value="#{cadastroPessoaModel.nome}"/>
+                  <h:inputText id="nome" value="#{cadastroPessoaHandler.nome}"/>
                   <h:message for="nome" errorClass="invalid"/>
                </td>
             </tr>
@@ -29,43 +28,40 @@
                   <h:outputLabel for="idade" value="Idade:"/>
                </th>
                <td>
-                  <h:inputText id="idade" value="#{cadastroPessoaModel.idade}"/>
+                  <h:inputText id="idade" value="#{cadastroPessoaHandler.idade}"/>
                   <h:message for="idade" errorClass="invalid"/>
                </td>
             </tr>
          </table>
          <p>
-            <h:commandButton id="cadastrarPessoa" action="#{cadastroPessoaModel.cadastrarPessoa}" value="Cadastrar">
+            <p:commandButton id="cadastrarPessoa" update="tabelaPessoas" action="#{cadastroPessoaHandler.cadastrarPessoa}" value="Cadastrar">
             	
-            </h:commandButton>
+            </p:commandButton>
+            
+  
             <h:outputText value=" Ok!" rendered="#{facesContext.postback and empty facesContext.messageList}" style="color: green;"/>
          </p>
          <h2>Cadastrados</h2>
          
-      <rich:extendedDataTable selectionMode="multiple" id="tabelaPessoas" selection="#{cadastroPessoaModel.selection}" var="_pessoa" value="#{cadastroPessoaModel.pessoas}">
-	  <a4j:ajax execute="@form" event="selectionchange" listener="#{cadastroPessoaModel.selectionListener}"
-	                          render=":removerPessoa"/>
-         <rich:column>
+      <h:dataTable id="tabelaPessoas"  var="_pessoa" value="#{cadastroPessoaHandler.pessoas}">
+	     <h:column>
             <f:facet name="header">Id</f:facet>
             #{_pessoa.id}
-         </rich:column>
-         <rich:column>
+         </h:column>
+         <h:column>
             <f:facet name="header">Nome</f:facet>
             #{_pessoa.nome}
-         </rich:column>
-         <rich:column>
+         </h:column>
+         <h:column>
             <f:facet name="header">Idade</f:facet>
             #{_pessoa.idade}
-         </rich:column>
-         <rich:column>
+         </h:column>
+         <h:column>
             <f:facet name="header">Ações</f:facet>
-            	<h:commandButton id="removerPessoa" value="Remover" action="#{cadastroPessoaModel.removerPessoa(_pessoa.id)}" >            		
+            	<h:commandButton id="removerPessoa" value="Remover" action="#{cadastroPessoaHandler.removerPessoa(_pessoa.id)}" >            		
             	</h:commandButton>            	
-         </rich:column>               
-      </rich:extendedDataTable>
-      <h:commandButton id="removerPessoa" value="Remover Selecionados" action="#{cadastroPessoaModel.removerSelecionados}" >            		
-            	</h:commandButton>
-        
+         </h:column>               
+      </h:dataTable>
             	
       </h:form>
    			      
