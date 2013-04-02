@@ -13,7 +13,7 @@
         
         Dinamica:
          
-         <p:selectOneMenu value="#{cadastroPessoaHandler.pessoaComboSelected}" effect="fade">  
+         <p:selectOneMenu id="comboPessoa" value="#{cadastroPessoaHandler.pessoaComboSelected}" effect="fade">  
             <f:selectItem itemLabel="Selecione" itemValue="-1" />  
             <f:selectItems value="#{cadastroPessoaHandler.pessoasCombo}" var="_pessoa" itemLabel="#{_pessoa.nome}" itemValue="#{_pessoa.id}" />  
         </p:selectOneMenu>
@@ -71,7 +71,7 @@
             	</h:commandButton>            	
          </p:column>               
       </p:dataTable>
-      <p:commandButton id="removerSelecionados" update="tabelaPessoas" action="#{cadastroPessoaHandler.removerSelecionados}" value="Remover selecionados" />
+      <p:commandButton id="removerSelecionados" update="tabelaPessoas,comboPessoa" action="#{cadastroPessoaHandler.removerSelecionados}" value="Remover selecionados" />
             	
       </h:form>
    			      

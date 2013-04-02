@@ -3,14 +3,10 @@ package br.com.maven3.tutorial.handler;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
-import javax.enterprise.context.Conversation;
-import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.NotNull;
 
@@ -21,8 +17,7 @@ import br.com.maven3.tutorial.entidades.Pessoa;
 import br.com.maven3.tutorial.services.ejb.interfaces.IPessoaServiceLocal;
 
 @Named
-@ConversationScoped
-public class CadastroPessoaHandler implements Serializable{
+public class CadastroPessoaHandler extends BaseConversationScoped implements Serializable{
 	
 	
 	/**
@@ -30,8 +25,6 @@ public class CadastroPessoaHandler implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@Inject
-    private Conversation conversation;
 	private List<Pessoa> selection;
 	private Long pessoaComboSelected;
 	public CadastroPessoaHandler(){
@@ -39,11 +32,6 @@ public class CadastroPessoaHandler implements Serializable{
 		System.out.println("Chamou o construtor");
 	}
 	
-	@PostConstruct
-	public void start(){
-		if(conversation.getId() == null)
-				conversation.begin();
-	}
 	
 	@EJB(beanInterface=IPessoaServiceLocal.class,beanName="PessoaServiceBean")
 	private IPessoaServiceLocal pessoaServiceBean;
