@@ -22,17 +22,13 @@ public abstract class BaseConversationScoped {
 		
 		if (conversation.isTransient()) {
             conversation.begin();
-            log.info("Start - conversation.getId(): " + conversation.getId());
+            log.info("Start - conversation.getId(): " + conversation.getId() + " - Timeout: "+conversation.getTimeout());
         }
 	}
 	
 	@PreDestroy
 	protected void destroy(){
 		
-		if(!conversation.isTransient()){
-			conversation.end();
-			log.info("Conversation Id: "+ conversation.getId() + " Ended");
-		}
 	}
 	
 }
