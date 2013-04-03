@@ -5,9 +5,8 @@ import javax.annotation.PreDestroy;
 import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Inject;
+import org.jboss.logging.Logger;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
 
 @ConversationScoped
@@ -23,7 +22,7 @@ public abstract class BaseConversationScoped {
 		
 		if (conversation.isTransient()) {
             conversation.begin();
-            log.debug("Start - conversation.getId(): " + conversation.getId());
+            log.info("Start - conversation.getId(): " + conversation.getId());
         }
 	}
 	
@@ -32,7 +31,7 @@ public abstract class BaseConversationScoped {
 		
 		if(!conversation.isTransient()){
 			conversation.end();
-			log.debug("Conversation Id: "+ conversation.getId() + " Ended");
+			log.info("Conversation Id: "+ conversation.getId() + " Ended");
 		}
 	}
 	

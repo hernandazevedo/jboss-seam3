@@ -13,18 +13,6 @@
       http://java.sun.com/xml/ns/javaee
       http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     
-    <!-- RichFaces 4 -->
-    <!--     
-        - From 'ui' directory: Copy richfaces-components-api-4.x.jar and 
-          richfaces-components-ui-4.x.jar to your application libraries 
-          folder.
-
-        - From 'framework' directory: Copy richfaces-core-api-4.x.jar and
-          richfaces-core-impl-4.x.jar to your application libraries folder.
-           a.  sac-1.3, cssparser-0.9.5 - required for components CSS work.
-           b.  google-guava-11.0.2 - core runtime dependency
-     -->  
-    
 	
 	<context-param>
 	   <param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -56,5 +44,9 @@
       <persistence-unit-ref-name>widgets/pu</persistence-unit-ref-name>
       <persistence-unit-name>widgets</persistence-unit-name>
    </persistence-unit-ref>
+ 
+	<listener>
+			<listener-class>br.com.maven3.tutorial.listeners.BootstrapListener</listener-class>
+	</listener>
 
 </web-app>

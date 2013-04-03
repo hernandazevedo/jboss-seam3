@@ -9,11 +9,11 @@
 
    <!-- Write your navigation rules here. You are encouraged to use CDI for creating @Named managed beans. -->
 	<navigation-rule>
-		<from-view-id>cadastroPessoa.xhtml</from-view-id>
+		<from-view-id>/cadastroPessoa.xhtml</from-view-id>
 		<navigation-case>
 			<!-- <from-action>#{cadastroPessoaModel.cadastrarPessoa}</from-action> -->
 			<from-outcome>sucesso</from-outcome>
-			<to-view-id>cadastroPessoa.xhtml</to-view-id>
+			<to-view-id>/cadastroPessoa.xhtml</to-view-id>
 		</navigation-case>
 		<navigation-case>
 			<from-action>#{cadastroPessoaModel.index}</from-action>
